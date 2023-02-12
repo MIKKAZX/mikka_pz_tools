@@ -41,17 +41,18 @@ def importIntoUnrealFunc():
 
     for i in images_dict:
         print(f'REEE {i}')
-        print(f'REEFILEPATH {asset_filepath_ue}')
-        texture_task = buildImportTask(i, asset_filepath_ue)
+        print(f'REEFILEPATH NUNYA {str{asset_filepath_ue}}')
+        texture_task = buildImportTask('texture', asset_filepath_ue)
         executeImportTasks([texture_task])
 
 # Setup the importing options and make it into a task
 def buildImportTask(filename, destination_path):
     print('Running import_asset')
+    # These are all the parameters for the import function:
     task = unreal.AssetImportTask()
     task.set_editor_property('automated', True)
     task.set_editor_property('destination_name', '')
-    task.set_editor_property('destination_path', destination_path)
+    task.set_editor_property('destination_path', str(destination_path))
     task.set_editor_property('filename', filename)
     task.set_editor_property('replace_existing', True)
     task.set_editor_property('save', False)
