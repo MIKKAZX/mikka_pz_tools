@@ -41,7 +41,7 @@ def importIntoUnrealFunc():
 
     for i in images_dict:
         print(f'REEE {i}')
-        print(f'REEFILEPATH NUNYA {str{asset_filepath_ue}}')
+        print(f'REEFILEPATH NUNYA {asset_filepath_ue}')
         texture_task = buildImportTask('texture', asset_filepath_ue)
         executeImportTasks([texture_task])
 
