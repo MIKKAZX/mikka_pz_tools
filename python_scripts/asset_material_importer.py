@@ -42,12 +42,14 @@ def importIntoUnrealFunc():
     for i in images_dict:
         print(f'REEE {i}')
         print(f'REEFILEPATH NUNYA {asset_filepath_ue}')
-        texture_task = buildImportTask('texture', asset_filepath_ue)
+        texture_task = buildImportTask(str(i), asset_filepath_ue)
         executeImportTasks([texture_task])
 
 # Setup the importing options and make it into a task
 def buildImportTask(filename, destination_path):
+
     print('Running import_asset')
+
     # These are all the parameters for the import function:
     task = unreal.AssetImportTask()
     task.set_editor_property('automated', True)
@@ -56,7 +58,12 @@ def buildImportTask(filename, destination_path):
     task.set_editor_property('filename', filename)
     task.set_editor_property('replace_existing', True)
     task.set_editor_property('save', False)
-    print("task", task, "filename" ,task.get_editor_property('filename'))
+#    print("task", task, "filename" ,task.get_editor_property('filename'))
+    
+    if re.search('(occlusionRoughnessMetallic)|(normal)', filename):
+        task.set_editor_property('srgb', False)
+
+
     return task
 
 # This is the part that actually imports it into unreal
